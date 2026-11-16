@@ -44,7 +44,7 @@ jobs:
     name: Deploy to IIS
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: [self-hosted, windows, x64, iis-test]
+    runs-on: self-hosted
 
     steps:
       - name: Download website artifact
