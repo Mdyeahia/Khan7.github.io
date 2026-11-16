@@ -1,468 +1,1249 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	
-<!-- Animate.css -->
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Yeahia Khan — Full-Stack .NET &amp; Angular Developer</title>
+<meta name="description" content="Md. Yeahia Khan — Full-Stack .NET Core &amp; Angular Developer specializing in production systems, ERP, and industrial process automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
 
-	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+  /* ============ TOKENS ============ */
+  :root{
+    --navy:#0d1b2a;
+    --navy-deep:#081019;
+    --navy-panel:#122236;
+    --line:#3f6690;
+    --line-soft:rgba(148,180,209,.16);
+    --amber:#e8a33d;
+    --amber-dim:#c98a2c;
+    --paper:#eef1ee;
+    --paper-dim:#e3e8e3;
+    --ink:#182028;
+    --muted:#5c6b78;
+    --white:#f7f9f8;
+    --radius:2px;
+    --maxw:1080px;
+  }
 
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  p{margin:0;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+  :focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
 
-	</head>
-	<body>
-	<div id="colorlib-page">
-		<div class="container-wrap">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-			<div class="text-center">
-				<div class="author-img" style="background-image: url(images/about.jpg);"></div>
-				<h1 id="colorlib-logo"><a href="index.html">Md. Yeahia Khan</a></h1>
-				<span class="position"><a href="#">Software Engineer | .Net</a> in Bangladesh</span>
-			</div>
-			<nav id="colorlib-main-menu" role="navigation" class="navbar">
-				<div id="navbar" class="collapse">
-					<ul>
-						<li class="active"><a href="#" data-nav-section="home">Home</a></li>
-						<li><a href="#" data-nav-section="about">About</a></li>
-						<li><a href="#" data-nav-section="skills">Skills</a></li>
-						<li><a href="#" data-nav-section="education">Education</a></li>
-						<li><a href="#" data-nav-section="experience">Experience</a></li>
-						<li><a href="#" data-nav-section="work">Work</a></li>
-						<li><a href="#" data-nav-section="contact">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
 
-			<div class="colorlib-footer">
-			
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
+  /* ============ SCROLL PROGRESS ============ */
+  .scroll-progress{
+    position:fixed;
+    top:0; left:0;
+    height:2px;
+    width:0%;
+    background:var(--amber);
+    z-index:300;
+    transition:width .08s linear;
+  }
 
-		</aside>
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .65s cubic-bezier(.22,.61,.36,1), transform .65s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:none;
+  }
+  .stagger.in-view > *{
+    transition-delay:calc(var(--i, 0) * 90ms);
+  }
 
-		<div id="colorlib-main">
-			
+  /* ============ HERO ENTRANCE ============ */
+  @keyframes heroFadeUp{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .h-anim{
+    animation:heroFadeUp .8s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .h-anim-1{ animation-delay:.05s; }
+  .h-anim-2{ animation-delay:.15s; }
+  .h-anim-3{ animation-delay:.25s; }
+  .h-anim-4{ animation-delay:.35s; }
+  .h-anim-5{ animation-delay:.45s; }
+  .h-anim-6{ animation-delay:.55s; }
+  .h-anim-7{ animation-delay:.65s; }
 
-			<section class="colorlib-about" data-section="about">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="col-md-12">
-									<div class="about-desc">
-										<span class="heading-meta">About Me</span>
-										<h2 class="colorlib-heading">Who Am I?</h2>
-										<p><strong>Hi I'm Md. Yeahia Khan</strong> full-stack developer with over two years of experience working on large-scale applications. I specialize in .NET and
-have worked with C#, Angular, jQuery, AngularJS, and Entity Framework, as well as having a strong understanding of
-Object-Oriented Programming. Have knowledge on SQL Server and how to use it for schema design, queries, stored
-procedures, triggers, and functions.</p>
-										<p>I constantly try to explore new technologies. I enjoy developing engaging solutions that bring positive values to the lives of people.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="colorlib-skills" data-section="skills">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">My Specialty</span>
-							<h2 class="colorlib-heading animate-box">My Skills</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>C#, ASP.Net Core Web Api</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-1" role="progressbar" aria-valuenow="75"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>Angular</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-							
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>JavaScript, jQuery</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-2" role="progressbar" aria-valuenow="60"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>HTML. CSS, Bootstrap</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="85"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>MSSQL, EF, Ado.Net</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>Crystal, Telerik Report</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  /* ============ NAV ACTIVE LINK ============ */
+  .nav-links a.active{
+    color:var(--amber);
+    border-color:var(--amber);
+  }
 
-			<section class="colorlib-education" data-section="education">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Education</span>
-							<h2 class="colorlib-heading animate-box">Education</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-							<div class="fancy-collapse-panel">
-								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-									
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingTwo">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Bachelor Degree of Computer Science & Engineering
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									        <div class="panel-body">
-									            <p>I have Completed B.Sc in CSE from <strong>International Islamic University Chittagong</strong></p>
-													<ul>
-														<li>(2016 - 2021)</li>
-														<li>GPA: 3.340</li>
-														<li><strong>Thesis -</strong> knowledge discovery from divorce data. </li>
-													</ul>
-									        </div>
-									    </div>
-									</div>
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingThree">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">HSC
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									        <div class="panel-body">
-									            	<ul>
-									            		<li>From <strong>Bandarban Cantonment Public & College</strong></li>
-														<li>(2014)</li>
-														<li>CGPA: 4.40</li>
-													</ul>
-									        </div>
-									    </div>
-									</div>
+  /* Stagger children of specific reveal groups */
+  .cap-list.reveal.in-view .cap-item,
+  .skills-grid.reveal.in-view .skill-module,
+  .project-grid.reveal.in-view .project-card,
+  .edu-list.reveal.in-view .edu-item,
+  .contact-grid.reveal.in-view .contact-card,
+  .timeline.reveal.in-view .tl-entry{
+    opacity:1; transform:none;
+  }
+  .cap-list.reveal .cap-item,
+  .skills-grid.reveal .skill-module,
+  .project-grid.reveal .project-card,
+  .edu-list.reveal .edu-item,
+  .contact-grid.reveal .contact-card,
+  .timeline.reveal .tl-entry{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .cap-list .cap-item:nth-child(1),
+  .skills-grid .skill-module:nth-child(1),
+  .project-grid .project-card:nth-child(1),
+  .edu-list .edu-item:nth-child(1),
+  .contact-grid .contact-card:nth-child(1),
+  .timeline .tl-entry:nth-child(1){ transition-delay:.05s; }
+  .cap-list .cap-item:nth-child(2),
+  .skills-grid .skill-module:nth-child(2),
+  .project-grid .project-card:nth-child(2),
+  .edu-list .edu-item:nth-child(2),
+  .contact-grid .contact-card:nth-child(2),
+  .timeline .tl-entry:nth-child(2){ transition-delay:.15s; }
+  .skills-grid .skill-module:nth-child(3),
+  .project-grid .project-card:nth-child(3),
+  .edu-list .edu-item:nth-child(3),
+  .contact-grid .contact-card:nth-child(3),
+  .cap-list .cap-item:nth-child(3){ transition-delay:.25s; }
+  .skills-grid .skill-module:nth-child(4){ transition-delay:.35s; }
+  .skills-grid .skill-module:nth-child(5){ transition-delay:.45s; }
+  .skills-grid .skill-module:nth-child(6){ transition-delay:.55s; }
 
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingFour">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">SSC
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-									        <div class="panel-body">
-									           <ul>
-									            		<li>From <strong>Bandarban Cantonment Public & College</strong></li>
-														<li>(2012)</li>
-														<li>CGPA: 4.50</li>
-													</ul>
-									        </div>
-									    </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
 
-			<section class="colorlib-experience" data-section="experience">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Experience</span>
-							<h2 class="colorlib-heading animate-box">Work Experience</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-				         <div class="timeline-centered">
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background:var(--amber);
+    color:var(--navy-deep);
+    padding:10px 16px;
+    z-index:200;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  .skip-link:focus{left:12px; top:12px;}
 
-					               <div class="timeline-icon color-1">
-					                  <i class="icon-pen2"></i>
-					               </div>
+  /* ============ CORNER-BRACKET SIGNATURE ============ */
+  .bracketed{
+    position:relative;
+  }
+  .bracketed::before,
+  .bracketed::after{
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    border:1.5px solid var(--amber);
+    opacity:.9;
+  }
+  .bracketed::before{
+    top:-1px; left:-1px;
+    border-right:none;
+    border-bottom:none;
+  }
+  .bracketed::after{
+    bottom:-1px; right:-1px;
+    border-left:none;
+    border-top:none;
+  }
 
-					               <div class="timeline-label">
-					                  <h2><a href="#">Junior Executive (Software Developer)</a> <span>December 2022 to Still</span></h2>
-					                  <h4><a href="https://disystem.net/">Kds Textile Mills Ltd.</a></h4>
-					                  <p>Here, I am working on production module and developed - <strong>Knitting & Dyeing machine plan borad.</strong> Maintaining total production chain - receiving order through Garments Api and despatch the fabric finally calculating all process loss, dyes & chemical cost and production target date etc.</p>
-					               </div>
-					            </div>
-					         </article>
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
+  /* ============ NAV ============ */
+  .site-nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(13,27,42,.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .site-nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--white);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;
+    letter-spacing:.04em;
+  }
+  .brand-mark{
+    width:30px;height:30px;
+    border:1.5px solid var(--amber);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    color:var(--amber);
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+  }
+  .nav-links a{
+    color:#cfd9e3;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:6px 2px;
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--amber); border-color:var(--amber); }
+  .nav-toggle{ display:none; }
 
-					               <div class="timeline-icon color-1">
-					                  <i class="icon-pen2"></i>
-					               </div>
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    background:
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white);
+    overflow:hidden;
+    padding:88px 0 76px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 90% 70% at 30% 20%, #000 40%, transparent 90%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 30% 20%, #000 40%, transparent 90%);
+    opacity:.7;
+  }
+  .hero .wrap{ position:relative; z-index:2; }
 
-					               <div class="timeline-label">
-					                  <h2><a href="#">Junior Software Engineer</a> <span>November 2021 to December 2022</span></h2>
-					                  <h4><a href="https://disystem.net/">Digital Intelligence System Ltd.</a></h4>
-					                  <p>Here, I am working on ERP project.The clients are - <strong>Hatil Furniture,Akter Furniture ,Tilottoma Bangla Group. and also in VAT managment project.</strong> My Role in this company - Develop new feature and bug fixing and provide support on client demand .</p>
-					               </div>
-					            </div>
-					         </article>
-					      </div>
-					   </div>
-				   </div>
-				</div>
-			</section>
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.5fr .9fr;
+    gap:48px;
+    align-items:start;
+  }
 
-			<section class="colorlib-work" data-section="work">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							
-							<h2 class="colorlib-heading animate-box">My Work</h2>
-						</div>
-					</div>
-					<!-- <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-						<div class="col-md-12">
-							<p class="work-menu"><span><a href="#" class="active">Graphic Design</a></span> <span><a href="#">Web Design</a></span> <span><a href="#">Software</a></span> <span><a href="#">Apps</a></span></p>
-						</div>
-					</div> -->
-					<div class="row">
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/kds1.png);">
-								<div class="desc">
-									<div class="con">
-										<h3><a title="Click to Source Code" href="https://github.com/Mdyeahia/KhawlaShop">Textile Soft</a></h3>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/khawla.png);">
-								<div class="desc">
-									<div class="con">
-										<h3><a title="Click to Source Code" href="https://github.com/Mdyeahia/KhawlaShop">Khawla Shop</a></h3>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="project" style="background-image: url(images/ClothBazar.png);">
-								<div class="desc">
-									<div class="con">
-										<h3><a title="Click to Source Code" href="https://github.com/Mdyeahia/ClothBazar">ClothBazar</a></h3>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
-							<div class="project" style="background-image: url(images/BidOn.png);">
-								<div class="desc">
-									<div class="con">
-											<h3><a title="Click to Source Code" href="https://github.com/Mdyeahia/BidOn">BidOn</a></h3>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</section>
-			<section class="colorlib-contact" data-section="contact">
-  <div class="colorlib-narrow-content">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-        <span class="heading-meta">Get in Touch</span>
-        <h2 class="colorlib-heading">Contact</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-5">
-        <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-          <div class="colorlib-icon">
-            <i class="icon-globe-outline"></i>
-          </div>
-          <div class="colorlib-text">
-            <p><a href="mailto:mdyeahia.khan@gmail.com">mdyeahia.khan@gmail.com</a></p>
-          </div>
-        </div>
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:20px;height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
 
-        <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-          <div class="colorlib-icon">
-            <i class="icon-map"></i>
-          </div>
-          <div class="colorlib-text">
-            <p>Shan Para, Mirpur-10 Dhaka</p>
-          </div>
-        </div>
+  .hero h1{
+    font-size:clamp(34px, 5vw, 54px);
+    font-weight:700;
+    line-height:1.07;
+    color:var(--white);
+    margin-bottom:14px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--amber);
+  }
+  .hero .role{
+    font-size:19px;
+    color:#c3d2de;
+    margin-bottom:20px;
+    font-weight:500;
+  }
+  .hero p.desc{
+    max-width:560px;
+    color:#a9b8c6;
+    font-size:15px;
+    line-height:1.8;
+    margin-bottom:34px;
+  }
 
-        <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-          <div class="colorlib-icon">
-            <i class="icon-phone"></i>
-          </div>
-          <div class="colorlib-text">
-            <p><a href="tel:+8801840772225">+8801840772225</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-7 col-md-push-1">
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-            <form id="contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" id="name" placeholder="Name">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="subject" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:44px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 22px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border-radius:var(--radius);
+    transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-solid{
+    background:var(--amber);
+    color:var(--navy-deep);
+    font-weight:600;
+  }
+  .btn-solid:hover{ background:var(--white); transform:translateY(-2px); }
+  .btn-line{
+    border-color:rgba(255,255,255,.35);
+    color:var(--white);
+  }
+  .btn-line:hover{ border-color:var(--amber); color:var(--amber); transform:translateY(-2px); }
+
+  .spec-rows{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-soft);
+    max-width:640px;
+  }
+  .spec-rows div{
+    padding:16px 0 0;
+    border-right:1px solid var(--line-soft);
+    padding-right:16px;
+  }
+  .spec-rows div:last-child{ border-right:none; }
+  .spec-rows .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#7d93a6;
+    margin-bottom:6px;
+  }
+  .spec-rows .v{
+    font-size:15px;
+    color:var(--white);
+    font-weight:600;
+  }
+
+  /* Nameplate card */
+  .nameplate{
+    background:var(--navy-panel);
+    border:1px solid var(--line-soft);
+    padding:26px;
+    position:relative;
+  }
+  .nameplate .badge{
+    width:64px;height:64px;
+    border:1.5px solid var(--amber);
+    color:var(--amber);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+
+  /* ID photo panel */
+  .id-photo{
+    position:relative;
+    aspect-ratio:1/1;
+    background-image:url('images/about.jpg');
+    background-size:cover;
+    background-position:center top;
+    filter:grayscale(20%) contrast(1.08) saturate(1.05);
+    border:1px solid var(--line-soft);
+    margin-bottom:18px;
+  }
+  .id-photo::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(13,27,42,0) 55%, rgba(13,27,42,.75) 100%),
+      linear-gradient(180deg, rgba(13,27,42,.15), rgba(13,27,42,.15));
+  }
+  .id-photo .id-tag{
+    position:absolute;
+    left:10px; bottom:10px;
+    background:var(--amber);
+    color:var(--navy-deep);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    font-weight:600;
+    padding:4px 9px;
+    z-index:2;
+  }
+  .nameplate dl{ margin:0; }
+  .nameplate .row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line-soft);
+    gap:12px;
+  }
+  .nameplate .row:last-child{ border-bottom:none; }
+  .nameplate dt{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#8299ab;
+  }
+  .nameplate dd{
+    margin:0;
+    font-size:13px;
+    color:var(--white);
+    text-align:right;
+    font-weight:500;
+  }
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{ padding:84px 0; scroll-margin-top:64px; }
+  .section-tag{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--amber-dim);
+    margin-bottom:14px;
+  }
+  .section-tag .num{
+    color:var(--muted);
+  }
+  .section-tag::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:#d3d9d3;
+  }
+  .section-title{
+    font-size:clamp(26px,3.4vw,36px);
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:18px;
+  }
+  .section-lede{
+    max-width:680px;
+    color:var(--muted);
+    font-size:15.5px;
+    margin-bottom:44px;
+  }
+  .alt{ background:var(--white); }
+
+  /* ============ ABOUT ============ */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .about-grid p{
+    color:#33404a;
+    font-size:15.5px;
+    line-height:1.85;
+    margin-bottom:18px;
+  }
+  .cap-list{ display:grid; gap:14px; margin-top:8px; }
+  .cap-item{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    border-top:1px solid var(--paper-dim);
+  }
+  .cap-item .idx{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--amber-dim);
+    padding-top:2px;
+  }
+  .cap-item h4{ font-size:15px; margin-bottom:5px; color:var(--navy); }
+  .cap-item p{ font-size:13.5px; color:var(--muted); margin:0; line-height:1.65; }
+
+  /* ============ SKILLS ============ */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--paper-dim);
+    border:1px solid var(--paper-dim);
+  }
+  .skill-module{
+    background:var(--white);
+    padding:26px 24px;
+  }
+  .skill-module h4{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:2px solid var(--amber);
+    display:inline-block;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    padding:6px 10px;
+    border:1px solid var(--paper-dim);
+    color:var(--ink);
+    background:var(--paper);
+  }
+
+  /* ============ EXPERIENCE ============ */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+    border-left:1px solid #d3d9d3;
+  }
+  .tl-entry{
+    position:relative;
+    padding-bottom:50px;
+  }
+  .tl-entry:last-child{ padding-bottom:0; }
+  .tl-entry::before{
+    content:"";
+    position:absolute;
+    left:-33px;
+    top:4px;
+    width:9px;height:9px;
+    background:var(--amber);
+    border:2px solid var(--white);
+    box-shadow:0 0 0 1px var(--amber);
+  }
+  .tl-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:4px;
+  }
+  .tl-role{ font-size:19px; font-weight:700; color:var(--navy); }
+  .tl-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.03em;
+  }
+  .tl-company{
+    color:var(--amber-dim);
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:16px;
+  }
+  .tl-entry ul{ display:grid; gap:10px; }
+  .tl-entry li{
+    position:relative;
+    padding-left:18px;
+    color:#3a4750;
+    font-size:14.5px;
+    line-height:1.7;
+  }
+  .tl-entry li::before{
+    content:"→";
+    position:absolute; left:0; top:0;
+    color:var(--amber-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+
+  /* ============ PROJECTS ============ */
+  .project-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .project-card{
+    background:var(--white);
+    border:1px solid var(--paper-dim);
+    padding:28px;
+    margin:12px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .project-card .ptype{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--amber-dim);
+  }
+  .project-card h3{
+    font-size:19px;
+    color:var(--navy);
+    line-height:1.3;
+  }
+  .project-card p{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.75;
+  }
+  .spec-table{
+    margin-top:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+  }
+  .spec-table .r{
+    display:flex;
+    gap:10px;
+    padding:7px 0;
+    border-top:1px dashed var(--paper-dim);
+    color:#3a4750;
+  }
+  .spec-table .r span:first-child{
+    color:var(--muted);
+    min-width:88px;
+    flex-shrink:0;
+  }
+
+  /* ============ EDUCATION ============ */
+  .edu-list{ display:grid; gap:1px; background:var(--paper-dim); border:1px solid var(--paper-dim); }
+  .edu-item{
+    background:var(--white);
+    padding:22px 26px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:14px;
+    align-items:center;
+  }
+  .edu-item h4{ font-size:16.5px; color:var(--navy); margin-bottom:4px; }
+  .edu-item .inst{ font-size:13.5px; color:var(--amber-dim); font-weight:600; }
+  .edu-item .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  /* ============ EXTRA ============ */
+  .extra-line{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 26px;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .extra-line span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--amber-dim);
+    margin-right:8px;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-wrap{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white);
+    padding:88px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 70% 60% at 80% 30%, #000 30%, transparent 85%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 80% 30%, #000 30%, transparent 85%);
+    opacity:.6;
+  }
+  .contact-wrap .wrap{ position:relative; z-index:2; }
+  .contact-wrap .section-tag::after{ background:var(--line-soft); }
+  .contact-wrap .section-tag{ color:var(--amber); }
+  .contact-wrap .section-title{ color:var(--white); }
+  .contact-wrap .section-lede{ color:#a9b8c6; }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:20px;
+  }
+  .contact-card{
+    border:1px solid var(--line-soft);
+    padding:22px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{ border-color:var(--amber); transform:translateY(-3px); }
+  .contact-card .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#7d93a6;
+    margin-bottom:10px;
+    display:block;
+  }
+  .contact-card .v{ font-size:15px; font-weight:600; color:var(--white); }
+
+  footer{
+    background:var(--navy-deep);
+    color:#6d818f;
+    text-align:center;
+    padding:24px 0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    border-top:1px solid var(--line-soft);
+  }
+
+  /* ============ SCROLL TO TOP ============ */
+  .to-top{
+    position:fixed;
+    right:26px;
+    bottom:26px;
+    width:48px;
+    height:48px;
+    background:var(--navy);
+    border:1.5px solid var(--amber);
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:150;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:opacity .3s ease, transform .3s ease, visibility .3s ease, background .2s ease, color .2s ease;
+  }
+  .to-top.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .to-top:hover{
+    background:var(--amber);
+    color:var(--navy-deep);
+  }
+  .to-top svg{
+    width:18px;
+    height:18px;
+    display:block;
+  }
+  .to-top .tt-label{
+    position:absolute;
+    bottom:56px;
+    right:0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#a9b8c6;
+    background:var(--navy);
+    border:1px solid var(--line-soft);
+    padding:5px 9px;
+    white-space:nowrap;
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .to-top:hover .tt-label{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (max-width:600px){
+    .to-top{ right:18px; bottom:18px; width:44px; height:44px; }
+    .to-top .tt-label{ display:none; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr 1fr; }
+    .project-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .nav-links{ gap:16px; }
+  }
+  @media (max-width:600px){
+    .wrap{ padding:0 20px; }
+    .nav-links{ display:none; }
+    section{ padding:60px 0; }
+    .spec-rows{ grid-template-columns:1fr 1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .edu-item{ grid-template-columns:1fr; }
+    .edu-item .meta{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="#" class="brand"><span class="brand-mark">MYK</span> MD. YEAHIA KHAN</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
-</section>
+</nav>
 
+<main id="main">
 
-		</div><!-- end:colorlib-main -->
-	</div><!-- end:container-wrap -->
-	</div><!-- end:colorlib-page -->
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow h-anim h-anim-1">Spec Sheet — Software Engineer</div>
+          <h1 class="h-anim h-anim-2">Md. Yeahia Khan<br>builds <em>production-grade</em><br>industrial software.</h1>
+          <div class="role h-anim h-anim-3">Full‑Stack .NET Core &amp; Angular Developer</div>
+          <p class="desc h-anim h-anim-4">Hands-on experience leading end-to-end production system
+            development — from planning and architecture through deployment and maintenance —
+            with a focus on real-time industrial process automation and enterprise ERP.</p>
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script type="text/javascript">
+          <div class="hero-actions h-anim h-anim-5">
+            <a href="#projects" class="btn btn-solid">View Work</a>
+            <a href="#contact" class="btn btn-line">Get In Touch</a>
+          </div>
+
+          <div class="spec-rows mono h-anim h-anim-6">
+            <div>
+              <div class="k">Based In</div>
+              <div class="v">Chittagong, BD</div>
+            </div>
+            <div>
+              <div class="k">Experience</div>
+              <div class="v">4+ Years</div>
+            </div>
+            <div>
+              <div class="k">Focus</div>
+              <div class="v">Production Systems</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nameplate bracketed h-anim h-anim-7">
+          <div class="id-photo" role="img" aria-label="Portrait of Md. Yeahia Khan">
+            <span class="id-tag">MYK — 001</span>
+          </div>
+          <dl>
+            <div class="row">
+              <dt>Role</dt>
+              <dd>Senior Executive<br>(Software Developer)</dd>
+            </div>
+            <div class="row">
+              <dt>Company</dt>
+              <dd>KDS Textile Mills Ltd.</dd>
+            </div>
+            <div class="row">
+              <dt>Since</dt>
+              <dd>December 2022</dd>
+            </div>
+            <div class="row">
+              <dt>Core Stack</dt>
+              <dd>.NET Core · Angular<br>SQL Server</dd>
+            </div>
+            <div class="row">
+              <dt>Domain</dt>
+              <dd>Textile Manufacturing</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§01</span> About</div>
+      <h2 class="section-title">Systems that keep the floor running.</h2>
+
+      <div class="about-grid">
+        <div>
+          <p>Full-stack .NET Core &amp; Angular developer with hands-on experience leading
+            end-to-end production system development. Skilled in translating business
+            requirements into scalable solutions, and in managing the full development
+            lifecycle — from planning and architecture to deployment and maintenance.</p>
+          <p>Experienced in team coordination, system optimization, and real-time industrial
+            process automation. Currently working as a Senior Executive (Software Developer)
+            at KDS Textile Mills Ltd, Chittagong, where I develop and maintain ERP systems,
+            production planning tools, and barcode-based tracking systems for textile
+            manufacturing.</p>
+        </div>
+
+        <div class="cap-list reveal">
+          <div class="cap-item">
+            <div class="idx mono">01</div>
+            <div>
+              <h4>End-to-End Ownership</h4>
+              <p>From requirement gathering and architecture to release and post-deployment
+                support.</p>
+            </div>
+          </div>
+          <div class="cap-item">
+            <div class="idx mono">02</div>
+            <div>
+              <h4>Production Automation</h4>
+              <p>Real-time tracking, machine planning, and barcode-based systems for live
+                manufacturing floors.</p>
+            </div>
+          </div>
+          <div class="cap-item">
+            <div class="idx mono">03</div>
+            <div>
+              <h4>Data &amp; Reporting</h4>
+              <p>Query optimization and reporting pipelines for large-scale production data.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§02</span> Skills</div>
+      <h2 class="section-title">Key Skills</h2>
+      <p class="section-lede">Technologies used across production ERP, reporting, and
+        manufacturing-automation systems.</p>
+
+      <div class="skills-grid reveal">
+        <div class="skill-module">
+          <h4>Front End</h4>
+          <div class="tag-row">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span>
+            <span class="tag">jQuery</span><span class="tag">Ajax</span><span class="tag">JavaScript</span>
+            <span class="tag">Angular</span><span class="tag">AngularJS</span>
+          </div>
+        </div>
+        <div class="skill-module">
+          <h4>Back End</h4>
+          <div class="tag-row">
+            <span class="tag">ASP.NET Core Web API</span><span class="tag">ASP.NET MVC</span><span class="tag">C#</span>
+          </div>
+        </div>
+        <div class="skill-module">
+          <h4>Database</h4>
+          <div class="tag-row">
+            <span class="tag">MS SQL Server</span><span class="tag">ADO.NET</span><span class="tag">EF</span>
+            <span class="tag">LINQ</span><span class="tag">SSMS</span><span class="tag">Toad</span>
+          </div>
+        </div>
+        <div class="skill-module">
+          <h4>Reporting</h4>
+          <div class="tag-row">
+            <span class="tag">Crystal Reports</span><span class="tag">Telerik</span>
+          </div>
+        </div>
+        <div class="skill-module">
+          <h4>Version Control</h4>
+          <div class="tag-row">
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">GitLab</span>
+            <span class="tag">Azure</span><span class="tag">TortoiseGit</span>
+          </div>
+        </div>
+        <div class="skill-module">
+          <h4>Extra</h4>
+          <div class="tag-row">
+            <span class="tag">Trello</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§03</span> Experience</div>
+      <h2 class="section-title">Working History</h2>
+
+      <div class="timeline reveal">
+        <div class="tl-entry">
+          <div class="tl-head">
+            <span class="tl-role">Senior Executive (Software Developer)</span>
+            <span class="tl-date mono">Dec 2022 — Current</span>
+          </div>
+          <div class="tl-company">KDS Textile Mills Limited</div>
+          <ul>
+            <li>Led the end-to-end development of a production management system, covering
+              planning, execution, and reporting.</li>
+            <li>Coordinated with business stakeholders to translate garment order APIs into
+              production workflows (LC, PI, PO, PP automation).</li>
+            <li>Designed and implemented machine planning modules with drag-and-drop
+              scheduling for knitting and dyeing units.</li>
+            <li>Architected backend services using .NET Core Web API, Entity Framework, and
+              ADO.NET for high-performance data processing.</li>
+            <li>Built dynamic and scalable UI components using Angular, including complex
+              table structures and real-time updates.</li>
+            <li>Managed production deployment lifecycle, including testing, release, and
+              post-deployment issue resolution.</li>
+            <li>Optimized SQL queries and database operations for large-scale production
+              data handling.</li>
+            <li>Took ownership of system stability and performance in live production
+              environments.</li>
+          </ul>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-head">
+            <span class="tl-role">Junior Software Engineer</span>
+            <span class="tl-date mono">Nov 2021 — Dec 2022</span>
+          </div>
+          <div class="tl-company">Digital Intelligence System Limited</div>
+          <ul>
+            <li>Built and maintained multiple web applications using C#, .NET, and MSSQL,
+              creating new software systems.</li>
+            <li>Participated across the entire development cycle.</li>
+            <li>Maintained and supported large-scale ERP systems, and built advanced complex
+              reports to improve client decision-making.</li>
+            <li>Designed new databases and data schemas for a business-critical progressive
+              web application, with close attention to data integrity and query execution
+              efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§04</span> Projects</div>
+      <h2 class="section-title">Selected Systems</h2>
+      <p class="section-lede">Enterprise systems built across manufacturing, ERP, inventory,
+        and business automation.</p>
+
+      <div class="project-grid reveal">
+        <div class="project-card bracketed">
+          <div class="ptype">Enterprise Manufacturing System</div>
+          <h3>TIMS — Production Software</h3>
+          <p>End-to-end production management system tracking the full lifecycle from yarn
+            receiving to finished fabric, including inventory control and real-time
+            production flow monitoring.</p>
+          <div class="spec-table">
+            <div class="r"><span>Env</span><span>ASP.NET Core 3.1 Web API, EF, LINQ, SQL Server 2019, Angular, Bootstrap, .NET MAUI, WebSocket</span></div>
+            <div class="r"><span>Role</span><span>Requirement gathering &amp; UML design, business/data-access logic, T‑SQL reporting</span></div>
+          </div>
+        </div>
+
+        <div class="project-card bracketed">
+          <div class="ptype">ERP · CRM · VAT Management</div>
+          <h3>HATIL ERP, CRM &amp; VAT Management</h3>
+          <p>Furniture-manufacturing ERP with MRP, integrated inventory, sales, and
+            customer/vendor/dealer management. Its VAT module supports return filing per
+            NBR rules.</p>
+          <div class="spec-table">
+            <div class="r"><span>Env</span><span>ASP.NET Core 3.1, ASP.NET MVC, EF, LINQ, SQL Server 2017, Bootstrap, jQuery</span></div>
+            <div class="r"><span>Role</span><span>Requirement specification with client, business/data-access logic, T‑SQL reporting</span></div>
+          </div>
+        </div>
+
+        <div class="project-card bracketed">
+          <div class="ptype">Enterprise ERP Platform</div>
+          <h3>BASE ERP</h3>
+          <p>Central enterprise application framework for manufacturing operations, spanning
+            sales, delivery, and procurement.</p>
+          <div class="spec-table">
+            <div class="r"><span>Env</span><span>ASP.NET, C#, ADO.NET, SQL Server 2017, AngularJS + ui-grid, Telerik Reporting</span></div>
+            <div class="r"><span>Role</span><span>Full front-end development; built sales, delivery, and procurement modules</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§05</span> Education</div>
+      <h2 class="section-title">Academic Background</h2>
+
+      <div class="edu-list reveal">
+        <div class="edu-item">
+          <div>
+            <h4>B.Sc. Engineering in Computer Science &amp; Engineering</h4>
+            <div class="inst">International Islamic University Chittagong</div>
+          </div>
+          <div class="meta">Passing Year 2021<br>Result: 3.340</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <h4>Higher Secondary Certificate (Science)</h4>
+            <div class="inst">Bandarban Cantonment Public School &amp; College</div>
+          </div>
+          <div class="meta">Passing Year 2014<br>Result: 4.40</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <h4>Secondary School Certificate (Science)</h4>
+            <div class="inst">Bandarban Cantonment Public School &amp; College</div>
+          </div>
+          <div class="meta">Passing Year 2012<br>Result: 4.50</div>
+        </div>
+      </div>
+
+      <div style="margin-top:34px;" class="extra-line">
+        <div><span>Beyond&nbsp;work</span>Debating &amp; badminton, reading, watching info videos, and blogging.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="contact-wrap">
+    <div class="wrap">
+      <div class="section-tag"><span class="num">§06</span> Contact</div>
+      <h2 class="section-title">Let's build something that runs.</h2>
+      <p class="section-lede">Open to enterprise software, ERP, and manufacturing-automation
+        work — full-stack .NET and Angular.</p>
+
+      <div class="contact-grid reveal">
+        <a class="contact-card" href="mailto:mdyeahia.khan@gmail.com">
+          <span class="k mono">Email</span>
+          <span class="v">mdyeahia.khan@gmail.com</span>
+        </a>
+        <a class="contact-card" href="tel:+8801840772225">
+          <span class="k mono">Phone</span>
+          <span class="v">+880 1840 772225</span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/md-yeahia-khan-329215155/" target="_blank" rel="noopener">
+          <span class="k mono">LinkedIn</span>
+          <span class="v">linkedin.com/Mdyeahia</span>
+        </a>
+        <a class="contact-card" href="https://github.com/Mdyeahia" target="_blank" rel="noopener">
+          <span class="k mono">GitHub</span>
+          <span class="v">github.com/Mdyeahia</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  MD. YEAHIA KHAN — CHITTAGONG, BANGLADESH
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Scroll to top">
+  <span class="tt-label">Top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"></line>
+    <polyline points="6 11 12 5 18 11"></polyline>
+  </svg>
+</button>
+
+<script>
   (function(){
-    emailjs.init("9r5zOhLFmwS6ExGH3");
+    var btn = document.getElementById('toTop');
+    var progress = document.getElementById('scrollProgress');
+
+    var onScroll = function(){
+      if (window.scrollY > 420) {
+        btn.classList.add('show');
+      } else {
+        btn.classList.remove('show');
+      }
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progress.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener('click', function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    // Scroll-triggered reveal
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      revealEls.forEach(function(el){ io.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('in-view'); });
+    }
+
+    // Active nav link on scroll
+    var navLinks = document.querySelectorAll('#navLinks a');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+    if ('IntersectionObserver' in window && sections.length) {
+      var navIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          var link = document.querySelector('#navLinks a[href="#' + entry.target.id + '"]');
+          if (!link) return;
+          if (entry.isIntersecting) {
+            navLinks.forEach(function(a){ a.classList.remove('active'); });
+            link.classList.add('active');
+          }
+        });
+      }, { threshold: 0, rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function(s){ navIo.observe(s); });
+    }
   })();
 </script>
 
-	<script src="js/mailSend.js"></script>
-
-
-	</body>
+</body>
 </html>
-
