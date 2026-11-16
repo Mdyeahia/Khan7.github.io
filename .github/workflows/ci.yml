@@ -1,0 +1,70 @@
+
+name: HTML Website CI-CD
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Validate website files
+        run: |
+          test -f index.html
+          test -d css
+
+      - name: Prepare deployment package
+        run: |
+          mkdir -p publish
+          cp *.html publish/
+          cp -r css publish/
+          if [ -d images ]; then cp -r images publish/; fi
+
+      - name: Upload website artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-website
+          path: publish/
+
+  deploy:
+    name: Deploy to IIS
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, windows, x64, iis-test]
+
+    steps:
+      - name: Download website artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-website
+          path: publish
+
+      - name: Deploy website to IIS
+        shell: powershell
+        run: |
+          $source = "$env:GITHUB_WORKSPACE\publish"
+          $destination = "C:\inetpub\wwwroot\MyHtmlWebsite"
+
+          New-Item -ItemType Directory -Force -Path $destination | Out-Null
+
+          Get-ChildItem -LiteralPath $destination -Force |
+            Remove-Item -Recurse -Force
+
+          Get-ChildItem -LiteralPath $source -Force |
+            Copy-Item -Destination $destination -Recurse -Force
+
+          Write-Host "Website deployed successfully!"
